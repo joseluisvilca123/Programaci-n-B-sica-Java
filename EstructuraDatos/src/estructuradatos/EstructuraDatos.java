@@ -4,18 +4,20 @@ package estructuradatos;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class EstructuraDatos {
 
     public static void main(String[] args) {
         Scanner scanner =new Scanner(System.in);
         boolean salir =false;
-        
+        try{
         while (!salir){
             System.out.println("Estructura de datos");
             System.out.println("1.- Array");
             System.out.println("2.- ArrayList");
-            System.out.println("3.- HasMap");
+            System.out.println("3.- HashMap");
             System.out.println("4.- Salir");
             
             System.out.print("Ingrese una opcion: ");
@@ -45,6 +47,7 @@ public class EstructuraDatos {
                     //Clonar
                     int[] edadesClon = edades.clone();
                     System.out.println("Array clonado. " + Arrays.toString(edadesClon));
+                    break;
                     
                 case 2:
                     System.out.println("Bienvenido a ArrayList");
@@ -73,12 +76,58 @@ public class EstructuraDatos {
                     //Comprobar si un elemento existe
                     System.out.println("Existe: " + ListaNombres.contains("David"));
                     break;
+                    
+                case 3:
+                    System.out.println("Bienvenido a HashMap");
+                    
+                    Map<String,Integer> edades1 = new HashMap<>();
+                    
+                    //Insertando data
+                    edades1.put("Jose",20);
+                    edades1.put("Marco",12);
+                    edades1.put("Javier",60);
+                    edades1.put("Pedro",50);
+                    
+                    //Eliminar un Dato
+                    edades1.remove("Pedro");
+                    
+                    //Recuperar un Valor
+                    System.out.println("Edad Jose: " +edades1.get("Jose"));
+                   
+                    //Longitud del Mapa
+                    edades1.size();
+                    
+                    //Imprimir las llaves (key)
+                    for(String Key : edades1.keySet()){
+                        System.out.println("Llaves: "+Key);
+                    }
+                    
+                    
+                    
+                    //Imprimir los valores (value)
+      
+                    for(Integer Values : edades1.values()){
+                        System.out.println("Valores: "+Values);
+                    }
+                    
+                    //Imprimir las Llaves y los valores 
+                    for(Map.Entry<String,Integer> lv : edades1.entrySet()){
+                        System.out.println(" Llave: " +lv.getKey() + " Valor: "+ lv.getValue());
+                    }
+                    
+                    break;
+
+                    
                 default:
-                    throw new AssertionError();
+                    System.out.println("Elija una opcion Válida");
             }
             
         }
-          scanner.close();      
+                
+    }catch (Exception ex){
+            System.out.println("Debe ingresar un numero entero "+ ex.getMessage());  
     }
+    scanner.close(); 
+}
     
 }
